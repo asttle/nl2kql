@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+requests
+chainlit
+pytest
+azure-identity
+pydantic-settings
+azure-monitor-query 
