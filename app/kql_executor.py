@@ -50,15 +50,17 @@ def execute_kql(kql_query: str,
             if response.tables:
                 for table in response.tables:
                     if hasattr(table, 'name') and hasattr(table, 'columns') and hasattr(table, 'rows'):
+                        logger.info(f"Table columns: {table.columns}")
                         processed_tables.append({
                             "name": table.name,
                             "columns": [col.name for col in table.columns if hasattr(col, 'name')],
-                            "rows": table.rows
+                            "rows": [list(row) for row in table.rows]
                         })
                     else:
                         logger.warning(f"Skipping malformed table object in response: {table}")
             else:
                 logger.info("Query returned successfully but with no tables/data.")
+            logger.info(f"Processed tables: {processed_tables}")
             return processed_tables
         elif response.status == LogsQueryStatus.PARTIAL:
             logger.warning(f"Log Analytics query returned partial data. Error: {response.partial_error}")
@@ -66,10 +68,11 @@ def execute_kql(kql_query: str,
             if response.partial_data:
                  for table in response.partial_data:
                     if hasattr(table, 'name') and hasattr(table, 'columns') and hasattr(table, 'rows'):
+                        logger.info(f"Table columns: {table.columns}")
                         processed_tables.append({
                             "name": table.name,
                             "columns": [col.name for col in table.columns if hasattr(col, 'name')],
-                            "rows": table.rows
+                            "rows": [list(row) for row in table.rows]
                         })
                     else:
                         logger.warning(f"Skipping malformed table object in partial_data: {table}")
