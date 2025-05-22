@@ -7,7 +7,7 @@ API_URL = os.getenv("NL2KQL_API_URL", "http://localhost:8000")
 
 import openlit
 
-openlit.init(otlp_endpoint="http://localhost:4318", service_name )
+openlit.init(otlp_endpoint="http://localhost:4318")
 
 @cl.on_message
 async def main(message: cl.Message):

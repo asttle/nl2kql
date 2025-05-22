@@ -11,3 +11,17 @@ azure-monitor-query
 openlit
 certifi
 urllib3
+# New dependencies for multi-RAG workflow
+chromadb
+sentence-transformers
+numpy
+scikit-learn
+tiktoken
+langchain
+langchain-community
+langchain-openai
+faiss-cpu
+sqlalchemy
+alembic
+asyncpg
+psycopg2-binary
