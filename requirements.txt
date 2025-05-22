@@ -8,3 +8,6 @@ pytest
 azure-identity
 pydantic-settings
 azure-monitor-query 
+openlit
+certifi
+urllib3

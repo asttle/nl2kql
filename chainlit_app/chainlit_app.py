@@ -5,6 +5,10 @@ import pandas as pd
 
 API_URL = os.getenv("NL2KQL_API_URL", "http://localhost:8000")
 
+import openlit
+
+openlit.init(otlp_endpoint="http://localhost:4318", service_name )
+
 @cl.on_message
 async def main(message: cl.Message):
     nl = message.content
