@@ -184,6 +184,72 @@ python scripts/prepare_data.py --workspace-id YOUR_WORKSPACE_ID
 python scripts/prepare_data.py --workspace-id YOUR_WORKSPACE_ID --force-refresh
 ```
 
+## 🎨 Enhanced User Interface
+
+### Chainlit Web App with RAG Workflow Visualization
+
+The enhanced Chainlit app now provides detailed visibility into the Multi-RAG workflow process:
+
+#### **Startup Experience**
+- **RAG Status Check**: Automatically checks if the RAG workflow is initialized
+- **Knowledge Base Info**: Shows number of entries loaded (tables, fields, examples)
+- **Initialization Guidance**: Provides instructions if RAG workflow needs setup
+
+#### **Query Processing Visualization**
+When you submit a natural language query, the app shows:
+
+1. **🔄 Processing Indicator**: Real-time feedback that query is being processed
+2. **⏱️ Performance Timing**: Shows KQL generation and execution times
+3. **🔍 Step 1: Context Retrieval**: 
+   - Number of relevant fields found
+   - Tables identified
+   - Similar query patterns retrieved
+4. **📋 Context Details**: 
+   - Primary tables identified
+   - Field analysis results
+   - Pattern matching results
+5. **🔄 Step 2: Context Processing**: 
+   - Prioritization and refinement process
+6. **🤖 Step 3: KQL Generation**: 
+   - Enhanced context sent to GPT-4
+   - Schema-aware generation
+7. **✅ Step 4: Validation**: 
+   - Query complexity analysis
+   - Performance impact assessment
+   - Validation warnings
+8. **🎯 Step 5: Final Result**: 
+   - Validated KQL query
+   - Ready for execution
+
+#### **Fallback Mode Indication**
+- **⚠️ Fallback Mode**: Clear indication when basic generation is used
+- **Initialization Guidance**: Instructions to enable full RAG workflow
+
+#### **Query Results**
+- **📊 Results Summary**: Row and column counts
+- **🚀 Execution Timing**: Shows Log Analytics query execution time
+- **📋 Data Tables**: Interactive dataframes with results
+
+#### **Starting the Enhanced UI**
+
+```bash
+# Start the API server first
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+# In another terminal, start the Chainlit app
+chainlit run chainlit_app/chainlit_app.py --port 8001
+```
+
+#### **Example User Experience**
+
+1. **User opens app**: Sees welcome message with RAG status
+2. **User types**: "Show me failed login attempts in the last week"
+3. **App shows**: 5-step RAG workflow with timing and context details
+4. **App displays**: Generated KQL with validation status
+5. **App executes**: Query and shows results with performance metrics
+
+This enhanced UI makes the Multi-RAG workflow transparent and educational, helping users understand how their queries are processed and why certain KQL is generated.
+
 ## 🏗️ Architecture Overview
 
 ```
